@@ -21,10 +21,8 @@ class ChatsController < ApplicationController
     @chat = current_user.chats.new(chat_params)
     @room = @chat.room
     @chats = @room.chats
-    if @chat.save
-      redirect_to request.referer
-    else
-      render 'show'
+    unless @chat.save
+      render :validater
     end
   end
 

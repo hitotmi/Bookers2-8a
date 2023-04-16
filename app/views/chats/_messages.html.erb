@@ -1,0 +1,26 @@
+<table class="chat-message">
+      <thead>
+        <tr>
+          <th style="text-align: left; font-size: 20px;"><%#= @user.name %></th>
+          <th></th>
+          <th style="text-align: right; font-size: 20px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @chats.each do |chat| %>
+          <% if chat.user_id == current_user.id %>
+            <tr>
+              <td></td>
+              <td></td>
+              <td><p style="text-align: right;"><%= chat.message %></p></td>
+            </tr>
+          <% else %>
+            <tr>
+              <td><p style="text-align: left;"><%= chat.message %></p></td>
+              <td></td>
+              <td></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
