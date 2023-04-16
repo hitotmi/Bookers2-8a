@@ -1,25 +1,33 @@
-<div class="chat-container">
+<div class="container">
   <div class="chat-topbar">
     <h2><%= @user.name %> さんとのチャット</h2>
   </div>
-    <div class="chat-messages">
-      <% @chats.each do |chat| %>
-        <% if chat.user_id == current_user.id %>
-          <div class="message self">
-          <div class="message-body">
-            <%= chat.message %>
-          </div>
-          </div>
-        <% else %>
-          <div class="message other">
-            <div class="message-sender"><%= chat.user.name %></div>
-            <div class="message-body">
-              <%= chat.message %>
-            </div>
-          </div>
+    <table class="chat-message">
+      <thead>
+        <tr>
+          <th style="text-align: left; font-size: 20px;"><%= @user.name %></th>
+          <th></th>
+          <th style="text-align: right; font-size: 20px;">あなた</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @chats.each do |chat| %>
+          <% if chat.user_id == current_user.id %>
+            <tr>
+              <td></td>
+              <td></td>
+              <td><p style="text-align: right;"><%= chat.message %></p></td>
+            </tr>
+          <% else %>
+            <tr>
+              <td><p style="text-align: left;"><%= chat.message %></p></td>
+              <td></td>
+              <td></td>
+            </tr>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </tbody>
+    </table>
   <div class="chat-form">
     <%= form_with model: @chat do |f| %>
       <div class="errors">
